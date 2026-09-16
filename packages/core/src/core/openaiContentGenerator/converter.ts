@@ -449,7 +449,7 @@ export async function convertLlmToolsToOpenAI(
                 PARAMETERLESS_SCHEMA_KEYS.has(key),
               )
             ) {
-              parameters = undefined;
+              parameters = { type: 'object', properties: {} };
             }
           }
 
@@ -458,7 +458,7 @@ export async function convertLlmToolsToOpenAI(
             function: {
               name: func.name,
               description: func.description ?? '',
-              parameters,
+              parameters: parameters ?? { type: 'object', properties: {} },
             },
           });
         }
